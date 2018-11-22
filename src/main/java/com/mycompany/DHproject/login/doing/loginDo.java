@@ -19,7 +19,7 @@ public class loginDo {
 	@ResponseBody
 	public void loginDo(loginForm loginForm, loginDTO login) {
 
-		loginDTO test = userDao.test(loginForm.getId());
+		String test = userDao.test(loginForm.getId());
 
 		System.out.println("form에서 : " + loginForm.getId());
 		System.out.println("form에서 : " + loginForm.getPassword());

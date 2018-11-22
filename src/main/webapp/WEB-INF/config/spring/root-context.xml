@@ -28,7 +28,13 @@
         <property name="dataSource" ref="dataSource"></property>
     <!-- mybatis-config.xml이 스프링 시작될때 같이 실행되도록 설정하기  -->
         <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath*:mappers/*"></property>
+        
     </bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
 	
 	<!-- bean 등록 -->
 	<context:component-scan base-package="com.mycompany.DHproject.login.dao.DHuserDAO"></context:component-scan>
