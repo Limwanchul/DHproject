@@ -1,50 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="/resources/css/common/fullcalendar.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript" src="/resources/js/common/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/resources/js/common/moment.min.js"></script>
-<script type="text/javascript" src="/resources/js/common/fullcalendar.js"></script>
-<script type="text/javascript" src="/resources/js/common/locale/ko.js"></script>
+<script type="text/javascript" src="/resources/js/common/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/login/login.js"></script>
 
-<style type="text/css">
-#box{
-width: 100%;
-text-align: center;
-}
+<link rel="stylesheet" id="bootstrap-css" href="/resources/css/common/bootstrap.min.css" >
+<link rel="stylesheet" href="/resources/css/login/login.css" />
 
-#top{
-	display: inline-block;
-    height: 80px;
-    width: 1570px;
-    padding-bottom: 10px;
-    background-color: red;
-    text-align: center;
-    font-size: 55px;
-    color: white;
-}
-
-#calendar{
-	display: inline-block;
-	width: 50%;
-}
-</style>
-
-	<title>index.jsp</title>
+<title>Login</title>
 </head>
 <body>
-	<div id="box">
-		<div id="top">캘린더</div>
-		<div id="calendar"></div>
-		<div id="bottom"></div>
-	</div>
-<script type="text/javascript">
-$('#calendar').fullCalendar({
-	
-});
-</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">      
+            <div class="wrap" style="text-align: center;">
+                <p class="form-title">
+                    Sign In</p>
+                <form class="login">
+                <input type="text" id="id" placeholder="Username" />
+                <input type="password" id="password" placeholder="Password" />
+                <input type="submit" value="Sign In" id="login" class="btn btn-success btn-sm" />
+                <div class="remember-forgot">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" />
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
