@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.DHproject.login.dao.DHuserDAO" >
-	<select id="getUserInfo" parameterType="loginDTO" resultType="String">
-		SELECT userId 
-		FROM DHuser 
+	<select id="getUserInfo" parameterType="loginDTO" resultType="loginDTO">
+		SELECT userUid, userId, userPw 
+		FROM dhuser 
 		WHERE userId = #{userId}
 	</select>
 </mapper>

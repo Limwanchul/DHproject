@@ -1,5 +1,9 @@
 package com.mycompany.DHproject.login.doing;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +19,29 @@ public class loginDo {
 
 	@Autowired private DHuserDAO userDao;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public void loginDo(loginForm loginForm, loginDTO login) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public int login(HttpSession session ,loginForm loginForm, loginDTO login) {
 
-		String test = userDao.test(loginForm.getId());
-
-		System.out.println("form에서 : " + loginForm.getId());
-		System.out.println("form에서 : " + loginForm.getPassword());
-
-		System.out.println("들어옴!!!");
+		List<loginDTO> userInfo = userDao.test(loginForm.getId());
+		/*
+		 * userInfoFlag 0:아이디 불일치 1:비밀번호 불일치 2:비밀번호 및 아이디가 일치
+		 */
+		int userInfoFlag = 0;
+		
+		if(userInfo.isEmpty()) {
+			userInfoFlag = 0;
+		}else {
+			for(int i = 0; i < userInfo.size(); i++) {
+				if(!userInfo.get(i).getUserPw().equals(loginForm.getPassword())) {
+					userInfoFlag = 1;
+				}else {
+					userInfoFlag= 2; 
+				}
+			}
+		}
+		
+		return userInfoFlag;
+		
 	}
 }
