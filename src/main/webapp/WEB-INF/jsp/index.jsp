@@ -24,7 +24,7 @@
                 <form class="login">
                 <input type="text" id="id" placeholder="Username" />
                 <input type="password" id="password" placeholder="Password" />
-                <input type="submit" value="Sign In" id="login" class="btn btn-success btn-sm" />
+                <input type="button" value="Sign In" id="login" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
                         <div class="col-md-6">

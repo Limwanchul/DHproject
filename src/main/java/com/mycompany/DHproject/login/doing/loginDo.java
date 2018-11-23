@@ -19,29 +19,35 @@ public class loginDo {
 
 	@Autowired private DHuserDAO userDao;
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home() {
+
+		return "index";
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public int login(HttpSession session ,loginForm loginForm, loginDTO login) {
+	public int login(HttpSession session, loginForm loginForm, loginDTO login) {
 
 		List<loginDTO> userInfo = userDao.test(loginForm.getId());
 		/*
 		 * userInfoFlag 0:아이디 불일치 1:비밀번호 불일치 2:비밀번호 및 아이디가 일치
 		 */
 		int userInfoFlag = 0;
-		
-		if(userInfo.isEmpty()) {
+
+		if (userInfo.isEmpty()) {
 			userInfoFlag = 0;
-		}else {
-			for(int i = 0; i < userInfo.size(); i++) {
-				if(!userInfo.get(i).getUserPw().equals(loginForm.getPassword())) {
+		} else {
+			for (int i = 0; i < userInfo.size(); i++) {
+				if (!userInfo.get(i).getUserPw().equals(loginForm.getPassword())) {
 					userInfoFlag = 1;
-				}else {
-					userInfoFlag= 2; 
+				} else {
+					userInfoFlag = 2;
 				}
 			}
 		}
-		
+
 		return userInfoFlag;
-		
+
 	}
 }
