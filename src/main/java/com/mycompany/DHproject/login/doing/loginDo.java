@@ -2,6 +2,8 @@ package com.mycompany.DHproject.login.doing;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,14 @@ public class loginDo {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public int login(HttpSession session, loginForm loginForm, loginDTO login) {
+	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
+	public int login(HttpSession session, loginForm loginForm, loginDTO login, HttpServletRequest request, HttpServletResponse response) {
 
 		List<loginDTO> userInfo = userDao.test(loginForm.getId());
+
+		session = request.getSession(true);
+		session.setAttribute("userInfo", userInfo.get(0));
+
 		/*
 		 * userInfoFlag 0:아이디 불일치 1:비밀번호 불일치 2:비밀번호 및 아이디가 일치
 		 */
