@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <html>
 <head>
 <link href="/resources/css/common/fullcalendar.css" rel="stylesheet" type="text/css" />
-<link href="/resources/css/calendar/calendar.css" rel="styleshtte" type="text/css" />
+<link href="/resources/css/calendar/calendar.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="/resources/js/common/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/common/moment.min.js"></script>
@@ -14,11 +14,14 @@
 	<title>calendar</title>
 </head>
 <body onload="printClock()">
+
+
 	<div id="box">
 		<div id="top">캘린더</div>
-		<div id="calendar"><div style="border:1px solid #dedede; width:600px; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="bottom"></div></div>		
+		<div id="calendar"></div>
+		<span style="" id="clock"></span>	
 	</div>
-
+<jsp:include page="../common/bottom.jsp" />
 <script type="text/javascript">
 $('#calendar').fullCalendar({
 	
@@ -26,7 +29,7 @@ $('#calendar').fullCalendar({
 
 function printClock() {
     
-    var clock = document.getElementById("bottom");            // 출력할 장소 선택
+    var clock = document.getElementById("clock");            // 출력할 장소 선택
     var currentDate = new Date();                                     // 현재시간
     var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
     var amPm = 'AM'; // 초기값 AM
@@ -42,7 +45,7 @@ function printClock() {
     if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
        currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
     }
-    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:20px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
     
     setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
 }

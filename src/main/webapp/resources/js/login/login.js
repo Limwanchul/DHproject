@@ -25,13 +25,11 @@ $(document).ready(
 									alert("비밀번호를 확인하세요.")
 								}
 								if (loginFlag == 2) {
-									location.href = "calendar";
+									document.location.href = "main";
 								}
 							},
 							error : function(request, status, error) {
-								alert("code:" + request.status + "\n"
-										+ "message:" + request.responseText
-										+ "\n" + "error:" + error);
+								alert("관리자에게 문의를 주세요.");
 							}
 						});
 					};
